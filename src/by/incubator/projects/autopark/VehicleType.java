@@ -50,4 +50,12 @@ public class VehicleType {
     public int hashCode() {
         return Objects.hash(typeName, taxCoefficient);
     }
+
+    @Override
+    public String toString() {
+        return "VehicleType{" +
+                "typeName='" + typeName + '\'' +
+                ", taxCoefficient=" + taxCoefficient +
+                '}';
+    }
 }

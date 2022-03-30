@@ -3,14 +3,14 @@ package by.incubator.projects.autopark;
 import java.util.Objects;
 
 public class Vehicle implements Comparable<Vehicle>{
-    VehicleType type;
-    String modelName;
-    String registrationNumber;
-    int weight;
-    int manufactureYear;
-    int mileage;
-    Color color;
-    int volume;
+    private VehicleType type;
+    private String modelName;
+    private String registrationNumber;
+    private int weight;
+    private int manufactureYear;
+    private int mileage;
+    private Color color;
+    private int volume;
 
     public Vehicle() {
     }
@@ -122,7 +122,7 @@ public class Vehicle implements Comparable<Vehicle>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, modelName, registrationNumber, weight, manufactureYear, mileage, color, volume);
+        return Objects.hash(type, modelName);
     }
 
     public int compareTo(Vehicle obj) {
