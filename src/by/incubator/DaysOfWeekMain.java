@@ -1,6 +1,6 @@
 package by.incubator;
 
-import static by.incubator.DaysOfWeek.display;
+import static by.incubator.DaysOfWeek.*;
 
 public class DaysOfWeekMain {
     public static void main(String[] args) {

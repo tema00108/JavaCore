@@ -32,18 +32,13 @@ public class TechnicalSpecialist {
     }
 
     public static boolean validateRegistrationNumber(String number) {
-        if (number != null) {
-            char[] arr = number.toCharArray();
-
-            for (int i = 0; i < arr.length; i++) {
-                if (i < 4) {
-
-                }
-            }
+        if (number != null && number.length() == 9) {
+            return number.compareTo("0000 AA-0") >= 0 && number.compareTo("9999 ZZ-7") <= 0;
         }
-
-        return true;
+        return false;
     }
 
-
+    public static boolean validateModelName(String name) {
+        return name != null && !name.equals("");
+    }
 }

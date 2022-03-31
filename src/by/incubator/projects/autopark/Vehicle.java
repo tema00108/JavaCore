@@ -1,44 +1,57 @@
 package by.incubator.projects.autopark;
 
 import java.util.Objects;
+import static by.incubator.projects.autopark.TechnicalSpecialist.*;
 
 public class Vehicle implements Comparable<Vehicle>{
-    private VehicleType type;
-    private String modelName;
+    private final VehicleType type;
+    private final String modelName;
     private String registrationNumber;
     private int weight;
-    private int manufactureYear;
+    private final int manufactureYear;
     private int mileage;
     private Color color;
     private int volume;
 
-    public Vehicle() {
-    }
-
     public Vehicle(VehicleType type, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
-        this.type = type;
-        this.modelName = modelName;
-        this.registrationNumber = registrationNumber;
-        this.weight = weight;
-        this.manufactureYear = manufactureYear;
-        this.mileage = mileage;
-        this.color = color;
+        if (validateVehicleType(type)) {
+            this.type = type;
+        }
+        else {
+            this.type = new VehicleType();
+        }
+        if (validateModelName(modelName)) {
+            this.modelName = modelName;
+        }
+        else {
+            this.modelName = "";
+        }
+        if (validateRegistrationNumber(registrationNumber)) {
+            this.registrationNumber = registrationNumber;
+        }
+        if (validateWeight(weight)) {
+            this.weight = weight;
+        }
+        if (validateManufactureYear(manufactureYear)) {
+            this.manufactureYear = manufactureYear;
+        }
+        else {
+            this.manufactureYear = 0;
+        }
+        if (validateMileage(mileage)) {
+            this.mileage = mileage;
+        }
+        if (validateColor(color)) {
+            this.color = color;
+        }
     }
 
     public VehicleType getType() {
         return type;
     }
 
-    public void setType(VehicleType type) {
-        this.type = type;
-    }
-
     public String getModelName() {
         return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
     }
 
     public String getRegistrationNumber() {
@@ -46,7 +59,9 @@ public class Vehicle implements Comparable<Vehicle>{
     }
 
     public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+        if (validateRegistrationNumber(registrationNumber)) {
+            this.registrationNumber = registrationNumber;
+        }
     }
 
     public int getWeight() {
@@ -54,15 +69,13 @@ public class Vehicle implements Comparable<Vehicle>{
     }
 
     public void setWeight(int weight) {
-        this.weight = weight;
+        if (validateWeight(weight)) {
+            this.weight = weight;
+        }
     }
 
     public int getManufactureYear() {
         return manufactureYear;
-    }
-
-    public void setManufactureYear(int manufactureYear) {
-        this.manufactureYear = manufactureYear;
     }
 
     public int getMileage() {
@@ -70,7 +83,9 @@ public class Vehicle implements Comparable<Vehicle>{
     }
 
     public void setMileage(int mileage) {
-        this.mileage = mileage;
+        if (validateMileage(mileage)) {
+            this.mileage = mileage;
+        }
     }
 
     public Color getColor() {
@@ -78,7 +93,9 @@ public class Vehicle implements Comparable<Vehicle>{
     }
 
     public void setColor(Color color) {
-        this.color = color;
+        if (validateColor(color)) {
+            this.color = color;
+        }
     }
 
     public int getVolume() {
@@ -95,16 +112,15 @@ public class Vehicle implements Comparable<Vehicle>{
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() +
-                "{type=" + type +
-                ", modelName='" + modelName + '\'' +
-                ", registrationNumber='" + registrationNumber + '\'' +
-                ", weight=" + weight +
-                ", manufactureYear=" + manufactureYear +
-                ", mileage=" + mileage +
-                ", color=" + color +
-                ", volume=" + volume +
-                '}';
+        return type +
+                ", " + modelName +
+                ", " + registrationNumber +
+                ", " + weight +
+                ", " + manufactureYear +
+                ", " + mileage +
+                ", " + color +
+                ", " + volume +
+                ", " + getCalcTaxPerMonth();
     }
 
     @Override

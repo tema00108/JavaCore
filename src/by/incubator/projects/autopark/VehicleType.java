@@ -53,9 +53,6 @@ public class VehicleType {
 
     @Override
     public String toString() {
-        return "VehicleType{" +
-                "typeName='" + typeName + '\'' +
-                ", taxCoefficient=" + taxCoefficient +
-                '}';
+        return "typeName=" + typeName;
     }
 }
