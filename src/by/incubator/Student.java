@@ -16,7 +16,7 @@ public class Student {
 
         counterOfStudents++;
 
-        System.out.println("Default constructor execution - " + counterOfStudents);
+        System.out.println("\nDefault constructor execution - " + counterOfStudents + '\n');
     }
 
     public static int getCounterOfStudents() {
