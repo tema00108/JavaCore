@@ -32,10 +32,31 @@ public class TechnicalSpecialist {
     }
 
     public static boolean validateRegistrationNumber(String number) {
-        if (number != null && number.length() == 9) {
-            return number.compareTo("0000 AA-0") >= 0 && number.compareTo("9999 ZZ-7") <= 0;
+        if (number == null || number.length() != 9) {
+            return false;
         }
-        return false;
+
+        for (int i = 0; i < 9; i++) {
+            char ch = number.charAt(i);
+
+            if (i < 4 && (ch < '0' || ch > '9')) {
+                return false;
+            }
+            else if (i == 4 && ch != ' ') {
+                return false;
+            }
+            else if (i > 4 && i < 7 && (ch < 'A' || ch > 'Z')) {
+                return false;
+            }
+            else if (i == 7 && ch != '-') {
+                return false;
+            }
+            else if (i == 8 && ch < '0' || ch > '9') {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static boolean validateModelName(String name) {

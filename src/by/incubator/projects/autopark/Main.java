@@ -51,11 +51,7 @@ public class Main {
 
 
         System.out.println("Unsorted vehicles: ");
-        for (Vehicle vehicle:
-             vehicles) {
-            System.out.println(vehicle.toString());
-        }
-        System.out.println();
+        Helper.displayArr(vehicles);
 
         for (int i = 0; i < SIZE_VEHICLES; i++) {
 
@@ -70,11 +66,7 @@ public class Main {
         }
 
         System.out.println("Sorted vehicles: ");
-        for (Vehicle vehicle:
-                vehicles) {
-            System.out.println(vehicle.toString());
-        }
-        System.out.println();
+        Helper.displayArr(vehicles);
 
         maxMileageVehicle = vehicles[0];
         minMileageVehicle = vehicles[0];
@@ -101,4 +93,16 @@ public class Main {
         System.out.println("\nMin mileage car: ");
         System.out.println(minMileageVehicle.toString());
     }
+
+    static class Helper {
+        public static <T> void displayArr(T[] elements) {
+            for (T element:
+                    elements) {
+                System.out.println(element.toString());
+            }
+            System.out.println();
+        }
+
+    }
 }
+
