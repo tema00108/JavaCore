@@ -20,8 +20,11 @@ public class StudentsLogic {
         System.out.print("Input student's first name: ");
         firstName = in.nextLine();
 
-        System.out.print("Input student's average grade: ");
-        averageGrade = Double.parseDouble(in.nextLine());
+        do {
+            System.out.print("Input student's average grade: ");
+            averageGrade = Double.parseDouble(in.nextLine());
+        } while (averageGrade < 1.0d || averageGrade > 10.0d);
+
 
         return new Student(lastName, firstName, averageGrade);
     }
@@ -32,8 +35,7 @@ public class StudentsLogic {
     }
 
     public void display(Student student) {
-        System.out.println(student.getLastName() + " " + student.getFirstName()
-                + " " + student.getAverageGrade());
+        System.out.println(student.toString());
     }
 
     public double countAverageGrade(Student... students) {

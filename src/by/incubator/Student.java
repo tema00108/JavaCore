@@ -5,8 +5,8 @@ public class Student {
 
     private final int schoolNumber = 1;
 
-    private String lastName;
-    private String firstName;
+    private final String lastName;
+    private final String firstName;
     private double averageGrade;
 
     public Student(String lastName, String firstName, double averageGrade) {
@@ -31,16 +31,8 @@ public class Student {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public double getAverageGrade() {
@@ -49,5 +41,9 @@ public class Student {
 
     public void setAverageGrade(double averageGrade) {
         this.averageGrade = averageGrade;
+    }
+
+    public String toString() {
+        return lastName + " " + firstName + " " + averageGrade;
     }
 }
