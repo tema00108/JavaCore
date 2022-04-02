@@ -1,4 +1,4 @@
-package by.incubator;
+package by.incubator.monitoring;
 
 import by.incubator.monitoring.GeneralIndicatorsMonitoringModule;
 

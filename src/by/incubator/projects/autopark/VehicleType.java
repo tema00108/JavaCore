@@ -41,7 +41,7 @@ public class VehicleType {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof VehicleType)) return false;
         VehicleType that = (VehicleType) o;
         return Double.compare(that.taxCoefficient, taxCoefficient) == 0 && Objects.equals(typeName, that.typeName);
     }
@@ -53,6 +53,9 @@ public class VehicleType {
 
     @Override
     public String toString() {
-        return "typeName=" + typeName;
+        return "VehicleType{" +
+                "typeName='" + typeName + '\'' +
+                ", taxCoefficient=" + taxCoefficient +
+                '}';
     }
 }

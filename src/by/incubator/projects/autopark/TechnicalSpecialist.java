@@ -36,27 +36,29 @@ public class TechnicalSpecialist {
             return false;
         }
 
-        for (int i = 0; i < 9; i++) {
-            char ch = number.charAt(i);
+        char[] chars = number.toCharArray();
 
-            if (i < 4 && (ch < '0' || ch > '9')) {
-                return false;
-            }
-            else if (i == 4 && ch != ' ') {
-                return false;
-            }
-            else if (i > 4 && i < 7 && (ch < 'A' || ch > 'Z')) {
-                return false;
-            }
-            else if (i == 7 && ch != '-') {
-                return false;
-            }
-            else if (i == 8 && ch < '0' || ch > '9') {
+        for (int i = 0; i < 4; i++) {
+            if (chars[i] < '0' || chars[i] > '9') {
                 return false;
             }
         }
 
-        return true;
+        if (chars[4] != ' ') {
+            return false;
+        }
+
+        for (int i = 5; i < 7; i++) {
+            if (chars[i] < 'A' || chars[i] > 'Z') {
+                return false;
+            }
+        }
+
+        if (chars[7] != '-') {
+            return false;
+        }
+
+        return chars[8] >= '0' && chars[8] <= '9';
     }
 
     public static boolean validateModelName(String name) {

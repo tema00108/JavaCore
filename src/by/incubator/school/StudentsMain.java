@@ -1,4 +1,4 @@
-package by.incubator;
+package by.incubator.school;
 
 import java.util.Scanner;
 

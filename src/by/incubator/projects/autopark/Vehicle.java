@@ -24,7 +24,7 @@ public class Vehicle implements Comparable<Vehicle>{
             this.modelName = modelName;
         }
         else {
-            this.modelName = "";
+            this.modelName = "Model";
         }
         if (validateRegistrationNumber(registrationNumber)) {
             this.registrationNumber = registrationNumber;
@@ -36,7 +36,7 @@ public class Vehicle implements Comparable<Vehicle>{
             this.manufactureYear = manufactureYear;
         }
         else {
-            this.manufactureYear = 0;
+            this.manufactureYear = LOWER_LIMIT_MANUFACTURE_YEAR;
         }
         if (validateMileage(mileage)) {
             this.mileage = mileage;
@@ -112,7 +112,7 @@ public class Vehicle implements Comparable<Vehicle>{
 
     @Override
     public String toString() {
-        return type +
+        return type.getTypeName() +
                 ", " + modelName +
                 ", " + registrationNumber +
                 ", " + weight +
@@ -159,3 +159,5 @@ public class Vehicle implements Comparable<Vehicle>{
         return 0;
     }
 }
+
+

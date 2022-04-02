@@ -1,9 +1,8 @@
-package by.incubator;
+package by.incubator.school;
 
 public class Student {
     private static int counterOfStudents = 0;
-
-    private final int schoolNumber = 1;
+    private static final int schoolNumber = 1;
 
     private final String lastName;
     private final String firstName;
