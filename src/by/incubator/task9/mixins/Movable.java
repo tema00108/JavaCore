@@ -1,4 +1,4 @@
-package by.incubator.mixins;
+package by.incubator.task9.mixins;
 
 public interface Movable {
     default void move() {
