@@ -1,4 +1,4 @@
-package by.incubator.projects.autopark;
+package by.incubator.projects.autopark.vehicles;
 
 import java.util.Objects;
 

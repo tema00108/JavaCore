@@ -1,9 +1,14 @@
-package by.incubator.projects.autopark;
+package by.incubator.projects.autopark.vehicles;
+
+import by.incubator.projects.autopark.Color;
+import by.incubator.projects.autopark.engines.ElectricalEngine;
+import by.incubator.projects.autopark.engines.Startable;
 
 import java.util.Objects;
 import static by.incubator.projects.autopark.TechnicalSpecialist.*;
 
 public class Vehicle implements Comparable<Vehicle>{
+
     private final VehicleType type;
     private final String modelName;
     private String registrationNumber;
@@ -12,8 +17,9 @@ public class Vehicle implements Comparable<Vehicle>{
     private int mileage;
     private Color color;
     private int volume;
+    private Startable engine;
 
-    public Vehicle(VehicleType type, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
+    public Vehicle(VehicleType type, Startable engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
         if (validateVehicleType(type)) {
             this.type = type;
         }
@@ -44,6 +50,8 @@ public class Vehicle implements Comparable<Vehicle>{
         if (validateColor(color)) {
             this.color = color;
         }
+
+        this.engine = engine;
     }
 
     public VehicleType getType() {
@@ -106,8 +114,17 @@ public class Vehicle implements Comparable<Vehicle>{
         this.volume = volume;
     }
 
+    public Startable getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Startable engine) {
+        this.engine = engine;
+    }
+
     public double getCalcTaxPerMonth() {
-        return (weight * 0.0013) + (type.getTaxCoefficient() * 30) + 5;
+
+        return (weight * 0.0013) + (type.getTaxCoefficient() * engine.getTaxPerMonth() * 30) + 5;
     }
 
     @Override
@@ -120,7 +137,8 @@ public class Vehicle implements Comparable<Vehicle>{
                 ", " + mileage +
                 ", " + color +
                 ", " + volume +
-                ", " + getCalcTaxPerMonth();
+                ", " + getCalcTaxPerMonth() +
+                ", " + engine;
     }
 
     @Override
