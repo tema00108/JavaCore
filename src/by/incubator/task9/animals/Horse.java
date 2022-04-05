@@ -1,6 +1,6 @@
 package by.incubator.task9.animals;
 
-public class Horse extends Animal{
+public class Horse extends Animal {
 
     public Horse() {
         super();

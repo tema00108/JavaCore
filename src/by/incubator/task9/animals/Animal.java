@@ -43,3 +43,4 @@ public abstract class Animal implements Starveble, Movable, Voiceable {
         this.hasMustache = hasMustache;
     }
 }
+
