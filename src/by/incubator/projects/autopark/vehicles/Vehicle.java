@@ -20,7 +20,28 @@ public class Vehicle implements Comparable<Vehicle>{
     private Startable engine;
 
     public Vehicle(VehicleType type, Startable engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
-        if (validateVehicleType(type)) {
+//        if (!validateVehicleType(type)) {
+//            throw new IllegalArgumentException("Vehicle type: " + type);
+//        }
+//        if (!validateModelName(modelName)) {
+//            throw new IllegalArgumentException("Model name: " + modelName);
+//        }
+//        if (!validateRegistrationNumber(registrationNumber)) {
+//            throw new IllegalArgumentException("Registration number: " + registrationNumber);
+//        }
+//        if (!validateWeight(weight)) {
+//            throw new IllegalArgumentException("Weight: " + weight);
+//        }
+//        if (!validateManufactureYear(manufactureYear)) {
+//            throw new IllegalArgumentException("Manufacture year: " + manufactureYear);
+//        }
+//        if (!validateMileage(mileage)) {
+//            throw new IllegalArgumentException("Mileage: " + mileage);
+//        }
+//        if (!validateColor(color)) {
+//            throw new IllegalArgumentException("Color: " + color);
+//        }
+        if (!validateVehicleType(type)) {
             this.type = type;
         }
         else {
