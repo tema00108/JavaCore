@@ -1,4 +1,4 @@
-package by.incubator.exceptions;
+package by.incubator.task7.exceptions;
 
 public class StackOverFlowRecursive {
     static int i = 0;

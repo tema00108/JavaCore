@@ -1,4 +1,4 @@
-package by.incubator.exceptions;
+package by.incubator.task7.exceptions;
 
 public class OutOfMemoryInfiniteCycle {
     static Object[] objs = new Object[100000000];

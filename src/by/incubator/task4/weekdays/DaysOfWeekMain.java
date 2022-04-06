@@ -1,6 +1,6 @@
-package by.incubator.weekdays;
+package by.incubator.task4.weekdays;
 
-import static by.incubator.weekdays.DaysOfWeek.*;
+import static by.incubator.task4.weekdays.DaysOfWeek.*;
 
 public class DaysOfWeekMain {
     public static void main(String[] args) {

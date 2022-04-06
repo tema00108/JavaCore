@@ -1,4 +1,4 @@
-package by.incubator;
+package by.incubator.task3.textprocessor;
 
 import java.util.Locale;
 import java.util.Scanner;

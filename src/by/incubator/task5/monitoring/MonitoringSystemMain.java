@@ -1,6 +1,4 @@
-package by.incubator.monitoring;
-
-import by.incubator.monitoring.GeneralIndicatorsMonitoringModule;
+package by.incubator.task5.monitoring;
 
 public class MonitoringSystemMain {
     public static void main(String[] args) {

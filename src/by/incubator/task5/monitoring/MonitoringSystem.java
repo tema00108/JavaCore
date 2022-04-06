@@ -1,4 +1,4 @@
-package by.incubator.monitoring;
+package by.incubator.task5.monitoring;
 
 public interface MonitoringSystem {
     void startMonitoring();

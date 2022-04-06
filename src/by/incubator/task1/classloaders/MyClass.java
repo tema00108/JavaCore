@@ -1,4 +1,4 @@
-package by.incubator;
+package by.incubator.task1.classloaders;
 
 public class MyClass {
 }

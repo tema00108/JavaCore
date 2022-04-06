@@ -1,4 +1,4 @@
-package by.incubator.weekdays;
+package by.incubator.task4.weekdays;
 
 public enum DaysOfWeek {
     MONDAY("MON", false),TUESDAY("TUE", false),

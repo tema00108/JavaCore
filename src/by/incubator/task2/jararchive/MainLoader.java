@@ -1,4 +1,4 @@
-package by.incubator;
+package by.incubator.task2.jararchive;
 
 import by.incubator.Main;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class Task2 {
+public class MainLoader {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         URL[] urls = new URL[] {new URL("file:///D:/Incubator/JavaCore/out/example.jar")};
         URLClassLoader classLoader = new URLClassLoader(urls);

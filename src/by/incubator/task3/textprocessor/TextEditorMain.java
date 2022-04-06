@@ -1,24 +1,39 @@
-package by.incubator;
+package by.incubator.task3.textprocessor;
 
-import java.io.Serializable;
-import java.io.StringReader;
 import java.util.Scanner;
 
-import static by.incubator.TextEditor.*;
+import static by.incubator.task3.textprocessor.TextEditor.*;
 
-public class TextEditorAlt {
+public class TextEditorMain {
     public static void main(String[] args) {
-        char ch;
         int num;
-        String string = "Hello, user! How are you?";
-        StringBuilder strBuild = new StringBuilder(string);
+        String string;
         String str1;
         String str2;
         String str3;
         String str4;
+        String helloUser = "Hello, user! How are you?";
         Scanner in = new Scanner(System.in);
 
-        processText();
+        System.out.println("\n\"Hello, user! How are you?\" append \"Fine!\":");
+        string = append(helloUser, "Fine!");
+        System.out.println(string);
+
+        System.out.println("\n\"Hello, user! How are you?\" insert \"dear\"");
+        string = insert(helloUser, "dear",5);
+        System.out.println(string);
+
+        System.out.println("\n\"Hello, user! How are you?\" delete '!'");
+        string = delete(helloUser, '!');
+        System.out.println(string);
+
+        System.out.println("\n\"Hello, user! How are you?\" replace \"user\" with \"programmer\"");
+        string = replace("Hello, user! How are you?", "user", "programmer");
+        System.out.println(string);
+
+        System.out.print("\nInput string which to reverse: ");
+        string = reverse(in.nextLine());
+        System.out.println(string);
 
         System.out.print("\nInput string in which to delete spaces: ");
         string = deleteSpaces();
@@ -46,7 +61,7 @@ public class TextEditorAlt {
         }
 
         for (String str:
-                strArray) {
+             strArray) {
             System.out.println(str);
         }
 
@@ -73,33 +88,5 @@ public class TextEditorAlt {
 
         str1 = null;
         System.out.println(str1 == null);
-    }
-
-    public static void processText() {
-
-        String string = "Hello, user! How are you?";
-        StringBuilder strBuild = new StringBuilder(string);
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("\n\"Hello, user! How are you?\" append \"Fine!\":");
-        strBuild.append("Fine");
-        System.out.println(strBuild);
-
-        System.out.println("\n\"Hello, user! How are you?\" insert \"dear\"");
-        strBuild.insert(7, "dear");
-        System.out.println(strBuild);
-
-        System.out.println("\n\"Hello, user! How are you?\" delete '!'");
-        strBuild.deleteCharAt(string.indexOf('!'));
-        System.out.println(string);
-
-        System.out.println("\n\"Hello, user! How are you?\" replace \"user\" with \"programmer\"");
-        strBuild.replace(7,11,"programmer");
-        System.out.println(strBuild);
-
-        System.out.print("\nInput string which to reverse: ");
-        strBuild = new StringBuilder(in.nextLine());
-        strBuild.reverse();
-        System.out.println(string);
     }
 }

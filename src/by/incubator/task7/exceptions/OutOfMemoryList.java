@@ -1,4 +1,4 @@
-package by.incubator.exceptions;
+package by.incubator.task7.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
