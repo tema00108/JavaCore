@@ -29,9 +29,7 @@ public abstract class AbstractEngine implements Startable {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "typeName='" + typeName +
-                ", taxCoefficient=" + taxCoefficient +
-                '}';
+        return typeName +
+                ",\"" + taxCoefficient + "\"";
     }
 }

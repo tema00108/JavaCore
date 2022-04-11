@@ -1,5 +1,8 @@
 package by.incubator.projects.autopark.vehicles;
 
+import by.incubator.projects.autopark.Color;
+import by.incubator.projects.autopark.engines.GasolineEngine;
+
 import java.util.Objects;
 
 public class VehicleType {

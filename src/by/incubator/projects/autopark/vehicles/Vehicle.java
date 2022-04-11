@@ -3,73 +3,63 @@ package by.incubator.projects.autopark.vehicles;
 import by.incubator.projects.autopark.Color;
 import by.incubator.projects.autopark.engines.ElectricalEngine;
 import by.incubator.projects.autopark.engines.Startable;
+import by.incubator.projects.autopark.exceptions.NotVehicleException;
 
 import java.util.Objects;
 import static by.incubator.projects.autopark.TechnicalSpecialist.*;
 
 public class Vehicle implements Comparable<Vehicle>{
 
-    private final VehicleType type;
-    private final String modelName;
+    private /*final*/ VehicleType type;
+    private /*final*/ String modelName;
     private String registrationNumber;
     private int weight;
-    private final int manufactureYear;
+    private /*final*/ int manufactureYear;
     private int mileage;
     private Color color;
     private int volume;
     private Startable engine;
 
     public Vehicle(VehicleType type, Startable engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
-//        if (!validateVehicleType(type)) {
-//            throw new IllegalArgumentException("Vehicle type: " + type);
-//        }
-//        if (!validateModelName(modelName)) {
-//            throw new IllegalArgumentException("Model name: " + modelName);
-//        }
-//        if (!validateRegistrationNumber(registrationNumber)) {
-//            throw new IllegalArgumentException("Registration number: " + registrationNumber);
-//        }
-//        if (!validateWeight(weight)) {
-//            throw new IllegalArgumentException("Weight: " + weight);
-//        }
-//        if (!validateManufactureYear(manufactureYear)) {
-//            throw new IllegalArgumentException("Manufacture year: " + manufactureYear);
-//        }
-//        if (!validateMileage(mileage)) {
-//            throw new IllegalArgumentException("Mileage: " + mileage);
-//        }
-//        if (!validateColor(color)) {
-//            throw new IllegalArgumentException("Color: " + color);
-//        }
-        if (!validateVehicleType(type)) {
-            this.type = type;
-        }
-        else {
+        try {
+            if (!validateVehicleType(type)) {
+                throw new NotVehicleException("Vehicle type: " + type);
+            }
+
             this.type = new VehicleType();
-        }
-        if (validateModelName(modelName)) {
-            this.modelName = modelName;
-        }
-        else {
+
+            if (!validateModelName(modelName)) {
+                throw new NotVehicleException("Model name: " + modelName);
+            }
+
             this.modelName = "Model";
-        }
-        if (validateRegistrationNumber(registrationNumber)) {
-            this.registrationNumber = registrationNumber;
-        }
-        if (validateWeight(weight)) {
+
+            if (!validateWeight(weight)) {
+                throw new NotVehicleException("Weight: " + weight);
+            }
+
             this.weight = weight;
-        }
-        if (validateManufactureYear(manufactureYear)) {
+
+            if (!validateManufactureYear(manufactureYear)) {
+                throw new NotVehicleException("Manufacture year: " + manufactureYear);
+            }
+
             this.manufactureYear = manufactureYear;
-        }
-        else {
-            this.manufactureYear = LOWER_LIMIT_MANUFACTURE_YEAR;
-        }
-        if (validateMileage(mileage)) {
+
+            if (!validateMileage(mileage)) {
+                throw new NotVehicleException("Mileage: " + mileage);
+            }
+
             this.mileage = mileage;
-        }
-        if (validateColor(color)) {
+
+            if (!validateColor(color)) {
+                throw new NotVehicleException("Color: " + color);
+            }
+
             this.color = color;
+
+        } catch (NotVehicleException e) {
+            System.err.println(e.getMessage());
         }
 
         this.engine = engine;
@@ -158,7 +148,7 @@ public class Vehicle implements Comparable<Vehicle>{
                 ", " + mileage +
                 ", " + color +
                 ", " + volume +
-                ", " + getCalcTaxPerMonth() +
+                ", " + Math.round(getCalcTaxPerMonth() * 100) / 100  +
                 ", " + engine;
     }
 
