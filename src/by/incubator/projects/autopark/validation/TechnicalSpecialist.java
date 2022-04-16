@@ -1,5 +1,6 @@
-package by.incubator.projects.autopark;
+package by.incubator.projects.autopark.validation;
 
+import by.incubator.projects.autopark.color.Color;
 import by.incubator.projects.autopark.engines.DieselEngine;
 import by.incubator.projects.autopark.engines.ElectricalEngine;
 import by.incubator.projects.autopark.engines.GasolineEngine;

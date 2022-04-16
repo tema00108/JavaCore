@@ -23,7 +23,7 @@ public class Main {
         persons[1] = new Person("Vlad", 20);
         persons[2] = new Person("Lenya", 20);
         persons[3] = new Person("Lesha", 20);
-        persons[4] = new Person("Daniil", 21);
+        persons[4] = new Person("Daniil", 22);
 
         return persons;
     }
