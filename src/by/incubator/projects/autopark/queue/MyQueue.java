@@ -26,19 +26,17 @@ public class MyQueue<T> {
     }
 
     public T dequeue() {
-        if (first > last) {
-            throw new IllegalStateException("Queue is empty");
-        }
-
+        T element = peek();
+        first++;
         if (first > 10) {
             firstToZero();
         }
 
-        return (T) array[first++];
+        return element;
     }
 
     public T peek() {
-        if (last == 0) {
+        if (first > last) {
             throw new IllegalStateException("Queue is empty");
         }
 

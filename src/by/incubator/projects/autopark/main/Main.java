@@ -1,6 +1,7 @@
 package by.incubator.projects.autopark.main;
 
 import by.incubator.projects.autopark.queue.MyQueue;
+import by.incubator.projects.autopark.queue.MyStack;
 import by.incubator.projects.autopark.vehicles.Vehicle;
 import by.incubator.projects.autopark.vehicles.VehicleCollection;
 
@@ -18,7 +19,22 @@ public class Main {
 
         MyQueue<Vehicle> queue = new MyQueue<>(vehicles);
         washVehicles(queue);
+
+        MyStack<Vehicle> stack = new MyStack<>(vehicles);
+        goToTheGarage(stack);
+
     }
+
+    public static void goToTheGarage(MyStack<Vehicle> stack) {
+        int size = stack.size();
+
+        for (int i = 0; i < size; i++) {
+            System.out.println(stack.pop() + " -- went to garage");
+        }
+
+        System.out.println("Garage is filled in");
+    }
+
     public static VehicleCollection loadInfo() {
         VehicleCollection vehicleCollection = new VehicleCollection("types.csv","vehicles.csv", "rents.csv");
 
@@ -32,8 +48,8 @@ public class Main {
     public static void washVehicles(MyQueue<Vehicle> queue) {
         int size = queue.size();
 
-        for (int i = 0; i < size; i++) { //size returns 5 instead of 7
-            System.out.println(queue.dequeue() + " -- вымыто");
+        for (int i = 0; i < size; i++) {
+            System.out.println(queue.dequeue() + " -- is washed up");
         }
     }
 }
