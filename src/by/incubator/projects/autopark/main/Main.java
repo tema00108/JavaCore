@@ -12,27 +12,33 @@ public class Main {
     public static final String RENTS_PATH = "src/by/incubator/projects/autopark/Java-main/";
 
     public static void main(String[] args) {
-        VehicleCollection vehColl = loadInfo();
-        vehColl.display();
+        VehicleCollection vehCollection = loadInfo();
+        vehCollection.display();
 
-        Vehicle[] vehicles = vehColl.getVehicles().toArray(new Vehicle[]{});
+        MyQueue<Vehicle> queue = new MyQueue<>();
+        washVehicles(vehCollection, queue);
 
-        MyQueue<Vehicle> queue = new MyQueue<>(vehicles);
-        washVehicles(queue);
+        System.out.println();
 
-        MyStack<Vehicle> stack = new MyStack<>(vehicles);
-        goToTheGarage(stack);
+        MyStack<Vehicle> stack = new MyStack<>();
+        goToTheGarage(vehCollection, stack);
 
     }
 
-    public static void goToTheGarage(MyStack<Vehicle> stack) {
-        int size = stack.size();
+    public static void goToTheGarage(VehicleCollection vehCollection, MyStack<Vehicle> stack) {
+        int size;
 
-        for (int i = 0; i < size; i++) {
-            System.out.println(stack.pop() + " -- went to garage");
+        for (Vehicle vehicle : vehCollection.getVehicles()) {
+            stack.push(vehicle);
+            System.out.println(stack.peek() + " -- has driven in");
         }
 
-        System.out.println("Garage is filled in");
+        System.out.println("Garage is fulled\n");
+        size = stack.size();
+
+        for (int i = 0; i < size; i++) {
+            System.out.println(stack.pop() + " -- has driven out");
+        }
     }
 
     public static VehicleCollection loadInfo() {
@@ -45,12 +51,19 @@ public class Main {
         return vehicleCollection;
     }
 
-    public static void washVehicles(MyQueue<Vehicle> queue) {
-        int size = queue.size();
+    public static void washVehicles(VehicleCollection vehCollection, MyQueue<Vehicle> queue) {
+        int size;
+
+        for (Vehicle vehicle : vehCollection.getVehicles()) {
+            queue.enqueue(vehicle);
+        }
+
+        size = queue.size();
 
         for (int i = 0; i < size; i++) {
             System.out.println(queue.dequeue() + " -- is washed up");
         }
+
     }
 }
 

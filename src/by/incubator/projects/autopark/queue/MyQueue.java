@@ -1,14 +1,21 @@
 package by.incubator.projects.autopark.queue;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.Arrays;
 
 public class MyQueue<T> {
+    private static final int DEFAULT_SIZE = 5;
     private Object[] array;
     private int size;
     private int last;
     private int first;
 
-    public MyQueue() { }
+    public MyQueue() {
+        array = new Object[DEFAULT_SIZE];
+        size = DEFAULT_SIZE;
+        last = -1;
+        first = 0;
+    }
 
     public MyQueue(T[] array) {
         this.array = Arrays.copyOf(array, array.length * 2);

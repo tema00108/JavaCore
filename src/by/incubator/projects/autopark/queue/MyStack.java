@@ -3,12 +3,17 @@ package by.incubator.projects.autopark.queue;
 import java.util.Arrays;
 
 public class MyStack<T> {
+    private static final int DEFAULT_SIZE = 5;
     private final int CLEAR_ARRAY_SIGNAL = 5;
     private Object[] array;
     private int size;
     private int current;
 
-    public MyStack() { }
+    public MyStack() {
+        array = new Object[DEFAULT_SIZE];
+        size = DEFAULT_SIZE;
+        current = -1;
+    }
 
     public MyStack(T[] array) {
         this.array = Arrays.copyOf(array, array.length * 2);
