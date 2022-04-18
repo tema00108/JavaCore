@@ -1,9 +1,11 @@
 package by.incubator.projects.autopark.main;
 
-import by.incubator.projects.autopark.queue.MyQueue;
-import by.incubator.projects.autopark.queue.MyStack;
+import by.incubator.projects.autopark.rent.Rent;
 import by.incubator.projects.autopark.vehicles.Vehicle;
 import by.incubator.projects.autopark.vehicles.VehicleCollection;
+import by.incubator.projects.autopark.vehicles.VehicleType;
+
+import java.util.List;
 
 public class Main {
 
@@ -12,58 +14,14 @@ public class Main {
     public static final String RENTS_PATH = "src/by/incubator/projects/autopark/Java-main/";
 
     public static void main(String[] args) {
-        VehicleCollection vehCollection = loadInfo();
-        vehCollection.display();
-
-        MyQueue<Vehicle> queue = new MyQueue<>();
-        washVehicles(vehCollection, queue);
-
-        System.out.println();
-
-        MyStack<Vehicle> stack = new MyStack<>();
-        goToTheGarage(vehCollection, stack);
-
-    }
-
-    public static void goToTheGarage(VehicleCollection vehCollection, MyStack<Vehicle> stack) {
-        int size;
-
-        for (Vehicle vehicle : vehCollection.getVehicles()) {
-            stack.push(vehicle);
-            System.out.println(stack.peek() + " -- has driven in");
-        }
-
-        System.out.println("Garage is fulled\n");
-        size = stack.size();
-
-        for (int i = 0; i < size; i++) {
-            System.out.println(stack.pop() + " -- has driven out");
-        }
-    }
-
-    public static VehicleCollection loadInfo() {
         VehicleCollection vehicleCollection = new VehicleCollection("types.csv","vehicles.csv", "rents.csv");
 
-        vehicleCollection.loadTypes(TYPES_PATH);
-        vehicleCollection.loadVehicles(VEHICLES_PATH);
-        vehicleCollection.loadRents(RENTS_PATH);
+        List<VehicleType> list =  vehicleCollection.loadTypes(TYPES_PATH);
+        List<Vehicle> list3 = vehicleCollection.loadVehicles(VEHICLES_PATH);
+        List<Rent> list2 = vehicleCollection.loadRents(RENTS_PATH);
 
-        return vehicleCollection;
+        vehicleCollection.display();
     }
 
-    public static void washVehicles(VehicleCollection vehCollection, MyQueue<Vehicle> queue) {
-        int size;
-
-        for (Vehicle vehicle : vehCollection.getVehicles()) {
-            queue.enqueue(vehicle);
-        }
-
-        size = queue.size();
-
-        for (int i = 0; i < size; i++) {
-            System.out.println(queue.dequeue() + " -- is washed up");
-        }
-
-    }
 }
 
