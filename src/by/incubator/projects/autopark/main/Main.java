@@ -16,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
         VehicleCollection vehicleCollection = new VehicleCollection("types.csv","vehicles.csv", "rents.csv");
 
-        List<VehicleType> list =  vehicleCollection.loadTypes(TYPES_PATH);
-        List<Vehicle> list3 = vehicleCollection.loadVehicles(VEHICLES_PATH);
-        List<Rent> list2 = vehicleCollection.loadRents(RENTS_PATH);
+        vehicleCollection.loadTypes(TYPES_PATH);
+        vehicleCollection.loadVehicles(VEHICLES_PATH);
+        vehicleCollection.loadRents(RENTS_PATH);
 
         vehicleCollection.display();
     }
