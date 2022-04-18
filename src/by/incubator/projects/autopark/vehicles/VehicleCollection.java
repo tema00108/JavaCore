@@ -26,6 +26,10 @@ public class VehicleCollection {
         this.rentPath = rentPath;
     }
 
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
     public List<VehicleType> loadTypes(String inFile) {
 
         List<VehicleType> list = new ArrayList<>();
