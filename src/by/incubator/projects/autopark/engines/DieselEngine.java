@@ -6,4 +6,9 @@ public class DieselEngine extends CombustionEngine {
 
         super("Diesel", 1.2, engineCapacity, fuelConsumptionPer100, fuelTankCapacity);
     }
+
+    @Override
+    public String toString() {
+        return "Diesel";
+    }
 }

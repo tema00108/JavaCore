@@ -1,12 +1,14 @@
 package by.incubator.projects.autopark.vehicles;
 
-import by.incubator.projects.autopark.Color;
-import by.incubator.projects.autopark.engines.ElectricalEngine;
+import by.incubator.projects.autopark.color.Color;
 import by.incubator.projects.autopark.engines.Startable;
 import by.incubator.projects.autopark.exceptions.NotVehicleException;
+import by.incubator.projects.autopark.rent.Rent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import static by.incubator.projects.autopark.TechnicalSpecialist.*;
+import static by.incubator.projects.autopark.validation.TechnicalSpecialist.*;
 
 public class Vehicle implements Comparable<Vehicle>{
 
@@ -18,21 +20,29 @@ public class Vehicle implements Comparable<Vehicle>{
     private int mileage;
     private Color color;
     private int volume;
+    private int id;
     private Startable engine;
+    private List<Rent> rents = new ArrayList<>();
 
-    public Vehicle(VehicleType type, Startable engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
+    public Vehicle(int id, VehicleType type, Startable engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
         try {
             if (!validateVehicleType(type)) {
                 throw new NotVehicleException("Vehicle type: " + type);
             }
 
-            this.type = new VehicleType();
+            this.type = type;
 
             if (!validateModelName(modelName)) {
                 throw new NotVehicleException("Model name: " + modelName);
             }
 
-            this.modelName = "Model";
+            this.modelName = modelName;
+
+            if (!validateRegistrationNumber(registrationNumber)) {
+                throw new NotVehicleException("Registration number:" + registrationNumber);
+            }
+
+            this.registrationNumber = registrationNumber;
 
             if (!validateWeight(weight)) {
                 throw new NotVehicleException("Weight: " + weight);
@@ -62,8 +72,14 @@ public class Vehicle implements Comparable<Vehicle>{
             System.err.println(e.getMessage());
         }
 
+        this.id = id;
         this.engine = engine;
     }
+
+//    public Vehicle(VehicleType type, GasolineEngine engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
+//        this(type, modelName, registrationNumber,weight, manufactureYear,mileage, color);
+//        this.engine = engine;
+//    }
 
     public VehicleType getType() {
         return type;
@@ -133,9 +149,38 @@ public class Vehicle implements Comparable<Vehicle>{
         this.engine = engine;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Rent> getRents() {
+        return rents;
+    }
+
+    public void setRents(List<Rent> rents) {
+        this.rents = rents;
+    }
+
     public double getCalcTaxPerMonth() {
 
         return (weight * 0.0013) + (type.getTaxCoefficient() * engine.getTaxPerMonth() * 30) + 5;
+    }
+
+    public double getTotalIncome() {
+        double sum = 0.0d;
+
+        for (Rent rent: rents) {
+            sum += rent.getCost();
+        }
+        return sum;
+    }
+
+    public double getTotalProfit() {
+        return getTotalIncome() - getCalcTaxPerMonth();
     }
 
     @Override
@@ -147,7 +192,6 @@ public class Vehicle implements Comparable<Vehicle>{
                 ", " + manufactureYear +
                 ", " + mileage +
                 ", " + color +
-                ", " + volume +
                 ", " + Math.round(getCalcTaxPerMonth() * 100) / 100  +
                 ", " + engine;
     }
