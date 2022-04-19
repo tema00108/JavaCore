@@ -1,6 +1,7 @@
 package by.incubator.projects.autopark.validation;
 
 import by.incubator.projects.autopark.color.Color;
+import by.incubator.projects.autopark.engines.CombustionEngine;
 import by.incubator.projects.autopark.engines.DieselEngine;
 import by.incubator.projects.autopark.engines.ElectricalEngine;
 import by.incubator.projects.autopark.engines.GasolineEngine;
@@ -61,15 +62,7 @@ public class TechnicalSpecialist {
         return name != null && !name.equals("");
     }
 
-    public static boolean validateGasolineEngine(GasolineEngine engine) {
-        if (engine == null) {
-            return false;
-        }
-
-        return engine.getEngineCapacity() > 0 && engine.getFuelTankCapacity() > 0 && engine.getFuelConsumptionPer100() > 0;
-    }
-
-    public static boolean validateDieselEngine(DieselEngine engine) {
+    public static boolean validateCombustionEngine(CombustionEngine engine) {
         if (engine == null) {
             return false;
         }
