@@ -42,27 +42,19 @@ public class TechnicalSpecialist {
 
         char[] chars = number.toCharArray();
 
-        for (int i = 0; i < 4; i++) {
-            if (chars[i] < '0' || chars[i] > '9') {
-                return false;
-            }
+        if (!isNumber(chars[0],chars[1],chars[2],chars[3],chars[8])) {
+            return false;
         }
 
         if (chars[4] != ' ') {
             return false;
         }
 
-        for (int i = 5; i < 7; i++) {
-            if (chars[i] < 'A' || chars[i] > 'Z') {
-                return false;
-            }
-        }
-
-        if (chars[7] != '-') {
+        if (!isCapLetter(chars[5], chars[6])) {
             return false;
         }
 
-        return chars[8] >= '0' && chars[8] <= '9';
+        return chars[7] == '-';
     }
 
     public static boolean validateModelName(String name) {
@@ -91,5 +83,25 @@ public class TechnicalSpecialist {
         }
 
         return engine.getBatterySize() > 0 && engine.getElectricityConsumption() > 0;
+    }
+
+    private static boolean isNumber(char... chars) {
+        for (char ch : chars) {
+            if (ch < '0' || ch > '9') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean isCapLetter(char... chars) {
+        for (char ch : chars) {
+            if (ch < 'A' || ch > 'Z') {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

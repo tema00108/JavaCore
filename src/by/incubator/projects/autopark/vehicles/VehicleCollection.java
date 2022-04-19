@@ -68,41 +68,34 @@ public class VehicleCollection {
     }
 
     public VehicleType createType(String csvString) {
-        final int idOrder = 0;
-        final int typeNameOrder = 1;
-        final int coefficientOrder = 2;
         int id;
         double coefficient;
         String typeName;
         String[] params = parseLine(csvString);
 
-        coefficient = Double.parseDouble(params[coefficientOrder]);
-        id = Integer.parseInt(params[idOrder]);
-        typeName = params[typeNameOrder];
+        coefficient = Double.parseDouble(params[2]);
+        id = Integer.parseInt(params[0]);
+        typeName = params[1];
 
         return new VehicleType(typeName, coefficient, id);
     }
 
     public Rent createRent(String csvString) {
-        final int idOrder = 0;
-        final int dateOrder = 1;
-        final int costOrder = 2;
         int id;
         Date date;
         double cost;
         DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         String[] params = parseLine(csvString);
 
-        cost = Double.parseDouble(params[costOrder]);
-        id = Integer.parseInt(params[idOrder]);
+        cost = Double.parseDouble(params[2]);
+        id = Integer.parseInt(params[0]);
 
         try {
-            date = formatter.parse(params[dateOrder]);
+            date = formatter.parse(params[1]);
         } catch (ParseException e) {
             e.printStackTrace();
             throw new IllegalArgumentException(e);
         }
-
 
         getVehicleById(id).getRents().add(new Rent(date ,cost));
 
@@ -110,15 +103,6 @@ public class VehicleCollection {
     }
 
     public Vehicle createVehicle(String csvString) {
-        final int idOrder = 0;
-        final int typeIdOrder = 1;
-        final int modelNameOrder = 2;
-        final int registrationNumberOrder = 3;
-        final int weightOrder = 4;
-        final int manufactureYearOrder = 5;
-        final int mileageOrder = 6;
-        final int colorOrder = 7;
-        final int engineOrder = 8;
         int id;
         int typeId;
         Startable engine;
@@ -131,19 +115,18 @@ public class VehicleCollection {
 
         String[] params = parseLine(csvString);
 
-        id = Integer.parseInt(params[idOrder]);
+        id = Integer.parseInt(params[0]);
+        modelName = params[2];
+        registrationNumber = params[3];
+        weight = Integer.parseInt(params[4]);
+        manufactureYear = Integer.parseInt(params[5]);
+        mileage = Integer.parseInt(params[6]);
+        color = Color.valueOf(params[7].toUpperCase(Locale.ROOT));
 
-        typeId = Integer.parseInt(params[typeIdOrder]);
+        typeId = Integer.parseInt(params[1]);
         VehicleType type = getTypeById(typeId);
 
-        modelName = params[modelNameOrder];
-        registrationNumber = params[registrationNumberOrder];
-        weight = Integer.parseInt(params[weightOrder]);
-        manufactureYear = Integer.parseInt(params[manufactureYearOrder]);
-        mileage = Integer.parseInt(params[mileageOrder]);
-        color = Color.valueOf(params[colorOrder].toUpperCase(Locale.ROOT));
-
-        engine = createEngine(params, engineOrder);
+        engine = createEngine(params, 8);
 
         return new Vehicle(id, type, engine, modelName, registrationNumber, weight, manufactureYear, mileage, color);
     }
