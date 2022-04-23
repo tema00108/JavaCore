@@ -42,12 +42,12 @@ public class MyLinkedList<T> extends AbstractList<T> implements List<T> {
     }
 
     private static class Node<E> {
-        private static Node header = new Node();
+        private Node<E> header = new Node<>();
         private Node<E> next;
         private Node<E> prev;
         private E element;
 
-        static {
+        {
             header.next = header;
             header.prev = header;
             header.element = null;
@@ -74,7 +74,7 @@ public class MyLinkedList<T> extends AbstractList<T> implements List<T> {
         }
 
         void addLast(E obj) {
-            Node<E> last = new Node<E>(header, header.prev, obj);
+            Node<E> last = new Node<>(header, header.prev, obj);
             header.prev.next = last;
             header.prev = last;
         }
