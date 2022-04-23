@@ -10,8 +10,8 @@ public class Main {
         String survivor;
         int amount = readConsole();
 
-        List<String> linkedList = initList(new LinkedList<>(), amount);
-        List<String> list = initList(new ArrayList<>(), amount);
+        List<String> linkedList = initList(new MyLinkedList<>(), amount);
+        List<String> list = initList(new MyArrayList<>(), amount);
 
         survivor = killWarriors(list, 2);
         System.out.println(survivor);
