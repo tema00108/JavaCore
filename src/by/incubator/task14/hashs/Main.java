@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         int most;
 
-        HashMap<String, Integer> products = putProducts();
+        HashMap<String, Integer> products = initProducts();
         ProductManager manager = new ProductManager();
 
         most = manager.mostFrequent(products);
@@ -21,7 +21,7 @@ public class Main {
         System.out.println(most);
     }
 
-    public static HashMap<String, Integer> putProducts() {
+    public static HashMap<String, Integer> initProducts() {
         HashMap<String, Integer> map = new HashMap<>();
         map.put("Milk", 48);
         map.put("Bread", 35);
