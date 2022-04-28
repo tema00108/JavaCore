@@ -1,6 +1,7 @@
 package by.incubator.task11.comparators;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,9 +9,7 @@ public class Main {
         Person[] persons = initPersons();
         print(persons);
 
-        Arrays.sort(persons, (o1, o2) -> {
-            return Integer.compare(o1.getAge(), o2.getAge());
-        });
+        Arrays.sort(persons, Comparator.comparingInt(Person::getAge));
         print(persons);
 
         Arrays.sort(persons);
