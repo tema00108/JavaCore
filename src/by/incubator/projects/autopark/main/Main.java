@@ -2,68 +2,47 @@ package by.incubator.projects.autopark.main;
 
 import by.incubator.projects.autopark.queue.MyQueue;
 import by.incubator.projects.autopark.queue.MyStack;
+import by.incubator.projects.autopark.service.MechanicService;
 import by.incubator.projects.autopark.vehicles.Vehicle;
 import by.incubator.projects.autopark.vehicles.VehicleCollection;
 
-public class Main {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-    public static final String TYPES_PATH = "src/by/incubator/projects/autopark/Java-main/";
-    public static final String VEHICLES_PATH = "src/by/incubator/projects/autopark/Java-main/";
-    public static final String RENTS_PATH = "src/by/incubator/projects/autopark/Java-main/";
+public class Main {
+    public static final String PATH = "src/by/incubator/projects/autopark/files/";
 
     public static void main(String[] args) {
+        MechanicService mechanic = new MechanicService();
         VehicleCollection vehCollection = loadInfo();
-        vehCollection.display();
 
-        MyQueue<Vehicle> queue = new MyQueue<>();
-        washVehicles(vehCollection, queue);
-
-        System.out.println();
-
-        MyStack<Vehicle> stack = new MyStack<>();
-        goToTheGarage(vehCollection, stack);
-
+        detectProblems(vehCollection, mechanic);
+        repairVehicles(vehCollection, mechanic);
     }
 
-    public static void goToTheGarage(VehicleCollection vehCollection, MyStack<Vehicle> stack) {
-        int size;
-
+    private static void repairVehicles(VehicleCollection vehCollection, MechanicService mechanic) {
         for (Vehicle vehicle : vehCollection.getVehicles()) {
-            stack.push(vehicle);
-            System.out.println(stack.peek() + " -- has driven in");
+            if (mechanic.isBroken(vehicle)) {
+                mechanic.repair(vehicle);
+            }
         }
+    }
 
-        System.out.println("Garage is fulled\n");
-        size = stack.size();
-
-        for (int i = 0; i < size; i++) {
-            System.out.println(stack.pop() + " -- has driven out");
+    private static void detectProblems(VehicleCollection vehCollection, MechanicService mechanic) {
+        for (Vehicle vehicle : vehCollection.getVehicles()) {
+            mechanic.detectBreaking(vehicle);
         }
     }
 
     public static VehicleCollection loadInfo() {
         VehicleCollection vehicleCollection = new VehicleCollection("types.csv","vehicles.csv", "rents.csv");
 
-        vehicleCollection.loadTypes(TYPES_PATH);
-        vehicleCollection.loadVehicles(VEHICLES_PATH);
-        vehicleCollection.loadRents(RENTS_PATH);
+        vehicleCollection.loadTypes(PATH);
+        vehicleCollection.loadVehicles(PATH);
+        vehicleCollection.loadRents(PATH);
 
         return vehicleCollection;
-    }
-
-    public static void washVehicles(VehicleCollection vehCollection, MyQueue<Vehicle> queue) {
-        int size;
-
-        for (Vehicle vehicle : vehCollection.getVehicles()) {
-            queue.enqueue(vehicle);
-        }
-
-        size = queue.size();
-
-        for (int i = 0; i < size; i++) {
-            System.out.println(queue.dequeue() + " -- is washed up");
-        }
-
     }
 }
 
