@@ -126,12 +126,11 @@ public class MechanicService implements Fixer {
     public int countDefects(Vehicle vehicle) {
         try (CSVReader reader = new CSVReader(new FileReader(ORDERS_PATH))) {
             int counter = 0;
-            List<String[]> allLines = reader.readAll();
+            int row = findRow(vehicle.getId());
+            String[] line = reader.readAll().get(row);
 
-            for (String[] line : allLines) {
-                for (int i = 1; i < line.length; i += 2) {
-                    counter += Integer.parseInt(line[i]);
-                }
+            for (int i = 1; i < line.length; i += 2) {
+                counter += Integer.parseInt(line[i]);
             }
 
             return counter;

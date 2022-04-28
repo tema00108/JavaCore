@@ -24,6 +24,8 @@ public class Vehicle implements Comparable<Vehicle>{
     private Startable engine;
     private List<Rent> rents = new ArrayList<>();
 
+    public Vehicle() { }
+
     public Vehicle(int id, VehicleType type, Startable engine, String modelName, String registrationNumber, int weight, int manufactureYear, int mileage, Color color) {
         try {
             if (!validateVehicleType(type)) {
