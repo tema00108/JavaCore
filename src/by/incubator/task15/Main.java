@@ -1,51 +1,45 @@
 package by.incubator.task15;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
+        String[] strings = {"fg", "sdf"};
 
-        List<String> strings = new ArrayList<>();
-        initList(strings);
-
-        applyFilter(strings, (o) -> {
-            o.clear();
+        applyFilter(strings, string -> {
+            string = null;
             return true;
         });
 
-        initList(strings);
-        testPredicate(strings, o -> {
-            o.clear();
+        testPredicate(strings, string -> {
+            string = null;
             return true;
         });
     }
 
-    private static void fill(Integer[] ints, Function<Integer, Integer> function) {
+    private static <T> void fill(){}
 
+    private static <T> void filter(T elem, Filter<T> filter) {
+        filter.apply(elem);
     }
 
-    private static void applyFilter( List<String> strings, Filter<List> filter) {
-        filter.apply(strings);
-        print(strings);
+    private static <T> void test(T elem, Predicate<T> predicate) {
+        predicate.test(elem);
     }
 
-    private static void testPredicate(List<String> strings, Predicate<List> predicate) {
-        predicate.test(strings);
-        print(strings);
+    private static void applyFilter( String[] strings, Filter<String> filter) {
+        for (int i = 0; i < strings.length; i++) {
+            filter(strings[i], filter);
+        }
     }
 
-    private static void initList(List<String> list) {
-        list.add("a");
-        list.add("b");
-        list.add("c");
-        list.add("d");
-        list.add("e");
-    }
-
-    private static void print(List<String> list) {
-        System.out.println(list);
+    private static void testPredicate(String[] strings, Predicate<String> predicate) {
+        for (int i = 0; i < strings.length; i++) {
+            test(strings[i], predicate);
+        }
     }
 }
