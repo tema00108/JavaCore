@@ -127,6 +127,11 @@ public class MechanicService implements Fixer {
         try (CSVReader reader = new CSVReader(new FileReader(ORDERS_PATH))) {
             int counter = 0;
             int row = findRow(vehicle.getId());
+
+            if (row < 0) {
+                return 0;
+            }
+
             String[] line = reader.readAll().get(row);
 
             for (int i = 1; i < line.length; i += 2) {

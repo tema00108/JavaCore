@@ -17,22 +17,8 @@ public class Main {
 
         detectProblems(vehCollection, mechanic);
         repairVehicles(vehCollection, mechanic);
-
-        startRent(vehCollection, mechanic);
     }
 
-    private static void startRent(VehicleCollection vehCollection, MechanicService mechanic) {
-        try {
-            for (Vehicle vehicle : vehCollection.getVehicles()) {
-                if (mechanic.isBroken(vehicle)) {
-                    mechanic.repair(vehicle);
-                    throw new DefectedVehicleException();
-                }
-            }
-        } catch (DefectedVehicleException e) {
-            System.out.println();
-        }
-    }
 
     private static void repairVehicles(VehicleCollection vehCollection, MechanicService mechanic) {
         for (Vehicle vehicle : vehCollection.getVehicles()) {
@@ -70,6 +56,7 @@ public class Main {
     }
 
     private static void print(Vehicle veh) {
+        System.out.println("Most defects has");
         System.out.println(veh.getModelName() + ", " + veh.getRegistrationNumber());
     }
 }
