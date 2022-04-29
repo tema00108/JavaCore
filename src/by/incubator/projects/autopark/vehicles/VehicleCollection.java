@@ -103,30 +103,20 @@ public class VehicleCollection {
     }
 
     public Vehicle createVehicle(String csvString) {
-        int id;
-        int typeId;
-        Startable engine;
-        String modelName;
-        String registrationNumber;
-        int weight;
-        int manufactureYear;
-        int mileage;
-        Color color;
-
         String[] params = parseLine(csvString);
 
-        id = Integer.parseInt(params[0]);
-        modelName = params[2];
-        registrationNumber = params[3];
-        weight = Integer.parseInt(params[4]);
-        manufactureYear = Integer.parseInt(params[5]);
-        mileage = Integer.parseInt(params[6]);
-        color = Color.valueOf(params[7].toUpperCase(Locale.ROOT));
+        int id = Integer.parseInt(params[0]);
+        String modelName = params[2];
+        String registrationNumber = params[3];
+        int weight = Integer.parseInt(params[4]);
+        int manufactureYear = Integer.parseInt(params[5]);
+        int mileage = Integer.parseInt(params[6]);
+        Color color = Color.valueOf(params[7].toUpperCase(Locale.ROOT));
 
-        typeId = Integer.parseInt(params[1]);
+        int typeId = Integer.parseInt(params[1]);
         VehicleType type = getTypeById(typeId);
 
-        engine = createEngine(params, 8);
+        Startable engine = createEngine(params, 8);
 
         return new Vehicle(id, type, engine, modelName, registrationNumber, weight, manufactureYear, mileage, color);
     }
@@ -255,30 +245,32 @@ public class VehicleCollection {
     private Startable createEngine(String[] params, int order) {
         String engineStr = params[order];
 
-        if (engineStr.equalsIgnoreCase("Electrical")) {
+        switch(engineStr) {
 
-            double batterySize = Double.parseDouble(params[order + 1]);
-            double consumption = Double.parseDouble( params[order + 2]);
+            case("Electrical"): {
 
-            return new ElectricalEngine(batterySize, consumption);
+                double batterySize = Double.parseDouble(params[order + 1]);
+                double consumption = Double.parseDouble(params[order + 2]);
+
+                return new ElectricalEngine(batterySize, consumption);
+            }
+            case("Diesel"): {
+
+                double engineCapacity = Double.parseDouble(params[order + 1]);
+                double fuelConsumptionPer100 = Double.parseDouble(params[order + 2]);
+                double fuelTankCapacity = Double.parseDouble(params[order + 3]);
+
+                return new DieselEngine(engineCapacity, fuelConsumptionPer100, fuelTankCapacity);
+            }
+            case("Gasoline"): {
+
+                double engineCapacity = Double.parseDouble(params[order + 1]);
+                double fuelConsumptionPer100 = Double.parseDouble(params[order + 2]);
+                double fuelTankCapacity = Double.parseDouble(params[order + 3]);
+
+                return new GasolineEngine(engineCapacity, fuelConsumptionPer100, fuelTankCapacity);
+            }
         }
-        else if (engineStr.equalsIgnoreCase("Diesel")) {
-
-            double engineCapacity = Double.parseDouble(params[order + 1]);
-            double fuelConsumptionPer100 = Double.parseDouble( params[order + 2]);
-            double fuelTankCapacity = Double.parseDouble( params[order + 3]);
-
-            return new DieselEngine(engineCapacity, fuelConsumptionPer100, fuelTankCapacity);
-        }
-        else if (engineStr.equalsIgnoreCase("Gasoline")) {
-
-            double engineCapacity = Double.parseDouble(params[order + 1]);
-            double fuelConsumptionPer100 = Double.parseDouble( params[order + 2]);
-            double fuelTankCapacity = Double.parseDouble( params[order + 3]);
-
-            return new GasolineEngine(engineCapacity, fuelConsumptionPer100, fuelTankCapacity);
-        }
-
         throw new IllegalArgumentException("Name of engine: " + engineStr);
     }
 
