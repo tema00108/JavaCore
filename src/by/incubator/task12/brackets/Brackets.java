@@ -1,19 +1,16 @@
 package by.incubator.task12.brackets;
 
-import com.sun.xml.internal.fastinfoset.util.CharArrayArray;
-
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class Brackets {
     public static void main(String[] args) {
 
         String check = "(fsd(ddsf(fs(<sdf><sdf>(fsdf[dsf{[]}]dg)fsd()()[][]{}{})g)))";
 
-        System.out.println(areCorrectBrackets(check));
+        System.out.println(isCorrectBrackets(check));
     }
 
-    public static boolean areCorrectBrackets(String input) {
+    public static boolean isCorrectBrackets(String input) {
 
         int bracketIndex;
         char[] inputChars = input.toCharArray();
