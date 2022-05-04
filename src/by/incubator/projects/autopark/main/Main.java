@@ -1,5 +1,6 @@
 package by.incubator.projects.autopark.main;
 
+import by.incubator.projects.autopark.rent.Rent;
 import by.incubator.projects.autopark.exceptions.DefectedVehicleException;
 import by.incubator.projects.autopark.service.MechanicService;
 import by.incubator.projects.autopark.vehicles.Vehicle;
@@ -15,10 +16,10 @@ public class Main {
 
     public static void main(String[] args) {
         MechanicService mechanic = new MechanicService();
-        VehicleCollection vehCollection = loadInfo();
+        VehicleCollection vehicleCollection = loadInfo();
 
-        detectProblems(vehCollection, mechanic);
-        repairVehicles(vehCollection, mechanic);
+        detectProblems(vehicleCollection, mechanic);
+        repairVehicles(vehicleCollection, mechanic);
     }
 
 
