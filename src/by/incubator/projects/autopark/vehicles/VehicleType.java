@@ -1,19 +1,18 @@
 package by.incubator.projects.autopark.vehicles;
 
-import by.incubator.projects.autopark.Color;
-import by.incubator.projects.autopark.engines.GasolineEngine;
-
 import java.util.Objects;
 
 public class VehicleType {
     private String typeName;
     private double taxCoefficient;
+    private int id;
 
     public VehicleType() {}
 
-    public VehicleType(String name, double taxRatio) {
+    public VehicleType(String name, double taxRatio, int id) {
         this.typeName = name;
         this.taxCoefficient = taxRatio;
+        this.id = id;
     }
 
     public String getTypeName() {
@@ -22,6 +21,14 @@ public class VehicleType {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getTaxCoefficient() {

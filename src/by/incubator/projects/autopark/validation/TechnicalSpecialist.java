@@ -1,5 +1,7 @@
-package by.incubator.projects.autopark;
+package by.incubator.projects.autopark.validation;
 
+import by.incubator.projects.autopark.color.Color;
+import by.incubator.projects.autopark.engines.CombustionEngine;
 import by.incubator.projects.autopark.engines.DieselEngine;
 import by.incubator.projects.autopark.engines.ElectricalEngine;
 import by.incubator.projects.autopark.engines.GasolineEngine;
@@ -41,42 +43,26 @@ public class TechnicalSpecialist {
 
         char[] chars = number.toCharArray();
 
-        for (int i = 0; i < 4; i++) {
-            if (chars[i] < '0' || chars[i] > '9') {
-                return false;
-            }
+        if (!isNumber(chars[0],chars[1],chars[2],chars[3],chars[8])) {
+            return false;
         }
 
         if (chars[4] != ' ') {
             return false;
         }
 
-        for (int i = 5; i < 7; i++) {
-            if (chars[i] < 'A' || chars[i] > 'Z') {
-                return false;
-            }
-        }
-
-        if (chars[7] != '-') {
+        if (!isCapLetter(chars[5], chars[6])) {
             return false;
         }
 
-        return chars[8] >= '0' && chars[8] <= '9';
+        return chars[7] == '-';
     }
 
     public static boolean validateModelName(String name) {
         return name != null && !name.equals("");
     }
 
-    public static boolean validateGasolineEngine(GasolineEngine engine) {
-        if (engine == null) {
-            return false;
-        }
-
-        return engine.getEngineCapacity() > 0 && engine.getFuelTankCapacity() > 0 && engine.getFuelConsumptionPer100() > 0;
-    }
-
-    public static boolean validateDieselEngine(DieselEngine engine) {
+    public static boolean validateCombustionEngine(CombustionEngine engine) {
         if (engine == null) {
             return false;
         }
@@ -90,5 +76,25 @@ public class TechnicalSpecialist {
         }
 
         return engine.getBatterySize() > 0 && engine.getElectricityConsumption() > 0;
+    }
+
+    private static boolean isNumber(char... chars) {
+        for (char ch : chars) {
+            if (ch < '0' || ch > '9') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean isCapLetter(char... chars) {
+        for (char ch : chars) {
+            if (ch < 'A' || ch > 'Z') {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

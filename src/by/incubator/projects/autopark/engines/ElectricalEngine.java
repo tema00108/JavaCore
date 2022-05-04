@@ -40,4 +40,9 @@ public class ElectricalEngine extends  AbstractEngine {
     public double getMaxKilometers() {
         return batterySize / electricityConsumption;
     }
+
+    @Override
+    public String toString() {
+        return "Electrical";
+    }
 }
