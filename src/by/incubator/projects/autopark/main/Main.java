@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static final String PATH = "src/by/incubator/projects/autopark/files/";
+    public static final String TYPES_PATH = "src/by/incubator/projects/autopark/files/";
+    public static final String VEHICLES_PATH = "src/by/incubator/projects/autopark/files/";
+    public static final String RENTS_PATH = "src/by/incubator/projects/autopark/files/";
 
     public static void main(String[] args) {
         MechanicService mechanic = new MechanicService();
@@ -48,9 +50,9 @@ public class Main {
     private static VehicleCollection loadInfo() {
         VehicleCollection vehicleCollection = new VehicleCollection("types.csv","vehicles.csv", "rents.csv");
 
-        vehicleCollection.loadTypes(PATH);
-        vehicleCollection.loadVehicles(PATH);
-        vehicleCollection.loadRents(PATH);
+        vehicleCollection.loadTypes(TYPES_PATH);
+        vehicleCollection.loadVehicles(VEHICLES_PATH);
+        vehicleCollection.loadRents(RENTS_PATH);
 
         return vehicleCollection;
     }
