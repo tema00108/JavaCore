@@ -1,19 +1,16 @@
-package by.incubator.task11.comparators;
+package by.incubator.task16;
 
 import java.util.Objects;
 
-public class Person implements Comparable<Person> {
+public class People {
     private String name;
     private int age;
+    private Sex sex;
 
-    public Person(String name, int age) {
+    public People(String name, int age, Sex sex) {
         this.name = name;
         this.age = age;
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        return Integer.compare(name.compareTo(o.name), 0);
+        this.sex = sex;
     }
 
     public String getName() {
@@ -24,24 +21,29 @@ public class Person implements Comparable<Person> {
         return age;
     }
 
+    public Sex getSex() {
+        return sex;
+    }
+
     @Override
     public String toString() {
-        return "Person{" +
+        return "People{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", sex=" + sex +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name);
+        if (!(o instanceof People)) return false;
+        People people = (People) o;
+        return age == people.age && Objects.equals(name, people.name) && sex == people.sex;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age);
+        return Objects.hash(name, age, sex);
     }
 }

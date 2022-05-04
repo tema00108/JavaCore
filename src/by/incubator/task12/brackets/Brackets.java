@@ -7,6 +7,7 @@ public class Brackets {
 
         String check = "(fsd(ddsf(fs(<sdf><sdf>(fsdf[dsf{[]}]dg)fsd()()[][]{}{})g)))";
 
+
         System.out.println(isCorrectBrackets(check));
     }
 
