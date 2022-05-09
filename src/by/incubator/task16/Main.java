@@ -34,7 +34,8 @@ public class Main {
     }
 
     private static void sortPeople() {
-        List<People> sortedPeople = persons.stream().sorted(Comparator.comparing(People::getSex).thenComparing(People::getAge)).collect(Collectors.toList());
+        List<People> sortedPeople = persons.stream().sorted(Comparator.comparing(People::getSex)
+                .thenComparing(People::getAge)).collect(Collectors.toList());
         System.out.println(sortedPeople);
     }
 
@@ -44,17 +45,23 @@ public class Main {
     }
 
     private static void getAbleToWorkMen() {
-        long ableToWorkMen = persons.stream().filter(person -> person.getSex() == Sex.MAN && person.getAge() >= 18 && person.getAge() <= 60).count();
+        long ableToWorkMen = persons.stream()
+                .filter(person -> person.getAge() >= 18 && ((person.getSex() == Sex.MAN && person.getAge() <= 60) || (person.getSex() == Sex.WOMAN && person.getAge() <= 55)))
+                .count();
         System.out.println(ableToWorkMen);
     }
 
     private static void getAverageManAge() {
-        long averageManAge = (int) persons.stream().filter(person -> person.getSex() == Sex.MAN).mapToInt(People::getAge).average().getAsDouble();
+        long averageManAge = (int) persons.stream()
+                .filter(person -> person.getSex() == Sex.MAN).mapToInt(People::getAge)
+                .average().getAsDouble();
         System.out.println(averageManAge);
     }
 
     private static void findMilitary() {
-        List<People> military = persons.stream().filter(person -> person.getSex() == Sex.MAN && person.getAge() >= 18 && person.getAge() <= 27).collect(Collectors.toList());
+        List<People> military = persons.stream()
+                .filter(person -> person.getSex() == Sex.MAN && person.getAge() >= 18 && person.getAge() <= 27)
+                .collect(Collectors.toList());
         System.out.println(military);
     }
 
