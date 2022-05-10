@@ -34,13 +34,16 @@ public class Main {
     }
 
     private static void sortPeople() {
-        List<People> sortedPeople = persons.stream().sorted(Comparator.comparing(People::getSex)
-                .thenComparing(People::getAge)).collect(Collectors.toList());
+        List<People> sortedPeople = persons.stream()
+                .sorted(Comparator.comparing(People::getSex).thenComparing(People::getAge))
+                .collect(Collectors.toList());
         System.out.println(sortedPeople);
     }
 
     private static void getMinAgePersons() {
-        People minAge = persons.stream().reduce((p1, p2) -> (p1.getAge() < p2.getAge()) ? p1 : p2).get();
+        People minAge = persons.stream()
+                .reduce((p1, p2) -> (p1.getAge() < p2.getAge()) ? p1 : p2)
+                .get();
         System.out.println(minAge);
     }
 
@@ -54,7 +57,8 @@ public class Main {
     private static void getAverageManAge() {
         long averageManAge = (int) persons.stream()
                 .filter(person -> person.getSex() == Sex.MAN).mapToInt(People::getAge)
-                .average().getAsDouble();
+                .average()
+                .getAsDouble();
         System.out.println(averageManAge);
     }
 
