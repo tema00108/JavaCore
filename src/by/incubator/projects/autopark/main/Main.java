@@ -1,15 +1,11 @@
 package by.incubator.projects.autopark.main;
 
 import by.incubator.projects.autopark.rent.Rent;
-import by.incubator.projects.autopark.exceptions.DefectedVehicleException;
-import by.incubator.projects.autopark.service.MechanicService;
+import by.incubator.projects.autopark.service.impl.MechanicService;
 import by.incubator.projects.autopark.vehicles.Vehicle;
 import by.incubator.projects.autopark.vehicles.VehicleCollection;
 import by.incubator.projects.autopark.vehicles.VehicleType;
 
-import java.util.List;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {

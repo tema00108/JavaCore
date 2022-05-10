@@ -1,6 +1,6 @@
-package by.incubator.projects.autopark.service;
+package by.incubator.projects.autopark.service.impl;
 
-import by.incubator.projects.autopark.fix.Fixer;
+import by.incubator.projects.autopark.service.entity.Fixer;
 import by.incubator.projects.autopark.vehicles.Vehicle;
 
 import java.io.*;

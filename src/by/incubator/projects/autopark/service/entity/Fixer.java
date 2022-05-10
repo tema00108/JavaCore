@@ -1,4 +1,4 @@
-package by.incubator.projects.autopark.fix;
+package by.incubator.projects.autopark.service.entity;
 
 import by.incubator.projects.autopark.vehicles.Vehicle;
 
