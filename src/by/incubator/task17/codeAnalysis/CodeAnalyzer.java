@@ -11,7 +11,7 @@ import static by.incubator.task17.codeAnalysis.Printer.*;
 public class CodeAnalyzer {
 
     public static final String CLASS_NAME = "Class name:";
-    public static final String SUPER_CLASS_NAME = "Super ";
+    public static final String SUPER = "Super ";
     public static final String IMPLEMENTED_INTERFACES = "Implemented interfaces of the class:";
     public static final String METHODS = "Methods:";
     public static final String METHOD_PARAMETERS = "Parameters:";
@@ -33,7 +33,7 @@ public class CodeAnalyzer {
         Class<?> clazz = o.getClass();
 
         print(CLASS_NAME, clazz.getName(), true);
-        print(SUPER_CLASS_NAME, clazz.getSuperclass().getName(),true);
+        print(SUPER + CLASS_NAME, clazz.getSuperclass().getName(),true);
 
         printInterfaces(clazz.getInterfaces());
         
