@@ -8,7 +8,6 @@ public class BadInitializer extends Initializer {
 
     public static <T> void initialize(T target, String fieldName, Object value) throws NoSuchFieldException {
         Class<?> targetClass = target.getClass();
-        Class<?> valueClass = value.getClass();
 
         Field field = targetClass.getDeclaredField(fieldName);
         field.setAccessible(true);
