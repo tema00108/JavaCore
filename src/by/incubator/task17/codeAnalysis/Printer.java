@@ -74,12 +74,6 @@ public class Printer {
         printDashes();
     }
 
-    private static void printParameters(Class<?>... parameters) {
-        for (Class<?> parameter : parameters) {
-            System.out.println(parameter.getName());
-        }
-    }
-
     public static void printAnnotations(Annotation[] annotations) {
         System.out.println(ANNOTATIONS);
 
@@ -102,6 +96,12 @@ public class Printer {
         }
 
         printDashes();
+    }
+
+    private static void printParameters(Class<?>... parameters) {
+        for (Class<?> parameter : parameters) {
+            System.out.println(parameter.getName());
+        }
     }
 
     private static void printModifiers(String modifiers) {
